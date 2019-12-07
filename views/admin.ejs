@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+    <title>admin</title>
+</head>
+
+<body >
+    <section id="admin">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="NEWENTRIES-tab" data-toggle="tab" href="#NEWENTRIES" role="tab" aria-controls="home" aria-selected="true">NEW ENTRIES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="PENDINGORDERS-tab" data-toggle="tab" href="#PENDINGORDERS" role="tab" aria-controls="profile" aria-selected="false">PENDING ORDERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="COMPLETEDORDERS-tab" data-toggle="tab" href="#COMPLETEDORDERS" role="tab" aria-controls="contact" aria-selected="false">COMPLETED ORDERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="DELIEVEREDORDERS-tab" data-toggle="tab" href="#DELIEVEREDORDERS" role="tab" aria-controls="contact" aria-selected="false">DELIEVERED ORDERS</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+
+
+            <div class="tab-pane fade show active" id="NEWENTRIES" role="tabpanel" aria-labelledby="NEWENTRIES-tab">
+                <form class="user-detail" method="post" action="/newOrder">
+                    <ul class="form-style-1">
+                        <li><label>customer Name <span class="required"> * </span></label><input type="text" name="name" class="field-divided" placeholder="" required /></li>
+                        <li>
+                            <label>customer contact <span class="required">*</span></label>
+                            <input type="tel" name="contact" class="field-long" required />
+                        </li>
+                        <li>
+                            <label>customer address<span class="required">*</span></label>
+                            <textarea name="address" id="field5" class="field-long field-textarea" required></textarea>
+                        </li>
+                        <div class="options">
+                            <li>
+                                <label>order</label>
+                                <select name="products" class="field-select" id="products" required>
+                                </select>
+                            </li>
+                            <li>
+                                <label>Quantity</label>
+                                <select name="quantity" class="field-select" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>tailor</label>
+                                <select name="tailors" class="field-select" id="tailors" required>
+                                </select>
+                            </li>
+                            <button onclick="addInput()" type="button" id="addButton">+</button>
+                            <!-- <button onclick="deleteInput(event)" type="button" id="deleteButton">-</button> -->
+                        </div>
+                         <!-- <div class="options">
+                        <li>
+                            <label>order</label>
+                            <select name="field4" class="field-select" required>
+                                <option value="suit">suit</option>
+                                <option value="suit">suit</option>
+                                <option value="suit">suit</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>Quantity</label>
+                            <select name="field4" class="field-select" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>tailor</label>
+                            <select name="field4" class="field-select" required>
+                                <option value="">a</option>
+                                <option value="">b</option>
+                                <option value="">c</option>
+                                <option value="">d</option>
+                            </select>
+                        </li>
+                        <button>+</button>
+                        <button>-</button>
+                        </div> -->
+                        <li id="submitButton">
+                            <button class="btn btn-primary">submit</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="PENDINGORDERS" role="tabpanel" aria-labelledby="PENDINGORDERS-tab" >
+                <% for(let order of pending_orders) { %>
+
+                    <div class="card" >
+                        <div class="card-body">
+                            <!--  <h5 class="card-title">Customer Name</h5>-->
+    
+    
+                            <div class="customer details">
+                                <li><label>customer Name <span class="required"> * </span></label>
+                                    <strong>&nbsp <%= order.customer_name %></strong>
+                                </li>
+                                <li>
+                                    <label>customer contact <span class="required">*</span></label>
+                                    <strong><%= order.customer_contact %></strong>
+                                </li>
+                                <li>
+                                    <label>customer address<span class="required">*</span></label>
+                                    <strong>&nbsp<%= order.customer_address %></strong>
+                                </li>
+                                <li>
+                                    <label>Total amount<span class="required">*</span></label>
+                                    <strong>&nbsp<%= order.discounted_price %></strong>
+                                </li>
+                            </div>
+                            <div class="tailor details">
+                               <% for(let item of order.cart) { %>
+
+                                   <div class="options">
+                                      <li>
+                                        <label>order*</label>
+                                        <strong><%= item.product_name %></strong>
+                                    </li> 
+                                    <li>
+                                        <label>Number*</label>
+                                        <strong><%= item.product_seq %></strong>
+                                    </li>
+                                    <li>
+                                        <label>tailor*</label>
+                                        <strong><%= item.tailor_name %></strong>
+                                    </li>  
+                                   </div>
+                               <% } %>
+                               
+                                <li>
+                                    <label>order date*</label>
+                                    <strong>&nbsp <%= order.date %></strong>
+                                </li>
+                                <li>
+                                    <label>order time*</label>
+                                    <strong>&nbsp <%= order.time %></strong>
+                                </li>
+                                <li>
+                                    <label>order ID*</label>
+                                    <strong>&nbsp <%=order.id%></strong>
+                                </li>
+    <!--
+                                <li>
+                                    <label>tailor assigned*</label>
+                                    <strong>&nbsp Seema</strong>
+                                </li>
+    -->
+                                <li>
+                                    <button class="btn btn-primary" id="<%= order.id %>" onclick="changeStatus(event)">Completed</button>
+                                </li>
+                            </div>
+    
+                        </div>
+                    </div>
+                <% } %>
+                    
+                <hr>
+            </div>
+
+
+            <div class="tab-pane fade" id="COMPLETEDORDERS" role="tabpanel" aria-labelledby="COMPLETEDORDERS-tab">
+                <% for(let order of completed_orders) { %>
+
+                    <div class="card" >
+                        <div class="card-body">
+                            <!--  <h5 class="card-title">Customer Name</h5>-->
+    
+    
+                            <div class="customer details">
+                                <li><label>customer Name <span class="required"> * </span></label>
+                                    <strong>&nbsp <%= order.customer_name %></strong>
+                                </li>
+                                <li>
+                                    <label>customer contact <span class="required">*</span></label>
+                                    <strong><%= order.customer_contact %></strong>
+                                </li>
+                                <li>
+                                    <label>customer address<span class="required">*</span></label>
+                                    <strong>&nbsp<%= order.customer_address %></strong>
+                                </li>
+                                <li>
+                                    <label>Total amount<span class="required">*</span></label>
+                                    <strong>&nbsp<%= order.discounted_price %></strong>
+                                </li>
+                            </div>
+                            <div class="tailor details">
+                                <% for(let item of order.cart) { %>
+
+                                    <div class="options">
+                                        <li>
+                                        <label>order*</label>
+                                        <strong><%= item.product_name %></strong>
+                                    </li> 
+                                    <li>
+                                        <label>Number*</label>
+                                        <strong><%= item.product_seq %></strong>
+                                    </li>
+                                    <li>
+                                        <label>tailor*</label>
+                                        <strong><%= item.tailor_name %></strong>
+                                    </li>  
+                                    </div>
+                                <% } %>
+                                
+                                <li>
+                                    <label>order date*</label>
+                                    <strong>&nbsp <%= order.date %></strong>
+                                </li>
+                                <li>
+                                    <label>order time*</label>
+                                    <strong>&nbsp <%= order.time %></strong>
+                                </li>
+                                <li>
+                                    <label>order ID*</label>
+                                    <strong>&nbsp <%= order.id %></strong>
+                                </li>
+    <!--
+                                <li>
+                                    <label>tailor assigned*</label>
+                                    <strong>&nbsp Seema</strong>
+                                </li>
+    -->
+                                <li>
+                                    <button class="btn btn-primary" id="<%= order.id %>" onclick="changeStatus(event)">Delievered</button>
+                                </li>
+                            </div>
+    
+                        </div>
+                    </div>
+                <% } %>
+                <hr>
+            </div>
+
+            <div class="tab-pane fade" id="DELIEVEREDORDERS" role="tabpanel" aria-labelledby="DELIEVEREDORDERS-tab">
+                <% for(let order of delievered_orders) { %>
+
+                    <div class="card" >
+                        <div class="card-body">
+                            <!--  <h5 class="card-title">Customer Name</h5>-->
+    
+    
+                            <div class="customer details">
+                                <li><label>customer Name <span class="required"> * </span></label>
+                                    <strong>&nbsp <%= order.customer_name %></strong>
+                                </li>
+                                <li>
+                                    <label>customer contact <span class="required">*</span></label>
+                                    <strong><%= order.customer_contact %></strong>
+                                </li>
+                                <li>
+                                    <label>customer address<span class="required">*</span></label>
+                                    <strong>&nbsp<%= order.customer_address %></strong>
+                                </li>
+                                <li>
+                                    <label>Total amount<span class="required">*</span></label>
+                                    <strong>&nbsp<%= order.discounted_price %></strong>
+                                </li>
+                            </div>
+                            <div class="tailor details">
+                                <% for(let item of order.cart) { %>
+
+                                    <div class="options">
+                                        <li>
+                                        <label>order*</label>
+                                        <strong><%= item.product_name %></strong>
+                                    </li> 
+                                    <li>
+                                        <label>Number*</label>
+                                        <strong><%= item.product_seq %></strong>
+                                    </li>
+                                    <li>
+                                        <label>tailor*</label>
+                                        <strong><%= item.tailor_name %></strong>
+                                    </li>  
+                                    </div>
+                                <% } %>
+                                
+                                <li>
+                                    <label>order date*</label>
+                                    <strong>&nbsp <%= order.date %></strong>
+                                </li>
+                                <li>
+                                    <label>order time*</label>
+                                    <strong>&nbsp <%= order.time %></strong>
+                                </li>
+                                <li>
+                                    <label>order ID*</label>
+                                    <strong>&nbsp <%= order.id %></strong>
+                                </li>
+    <!--
+                                <li>
+                                    <label>tailor assigned*</label>
+                                    <strong>&nbsp Seema</strong>
+                                </li>
+    -->
+                                <!-- <li>
+                                    <button class="btn btn-primary">Completed</button>
+                                </li> -->
+                            </div>
+    
+                        </div>
+                    </div>
+                <% } %>
+                <hr>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- order status button scripts -->
+    <script>
+        
+        function changeStatus(e) {
+            var orderId = e.target.id;
+            var orderStatus = e.target.innerHTML.toLowerCase();
+            sendReq(method="POST", route="/changeStatus", {id: orderId, status: orderStatus}, (responseText) => {
+                var response = JSON.parse(responseText)
+                window.location.href = "/"
+            })
+        }
+
+    </script>
+
+
+
+    <!-- AJAX scripts -->
+    <script>
+
+        var tailors = -1;
+        var products = -1;
+    
+        function loadTailorsList() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    
+                    if(this.responseText != '-1') {
+                        
+                        //setting values in drop down
+                        tailors = JSON.parse(this.responseText)
+
+                        fillTailors(tailors)
+                    }
+                }
+            }
+
+            xhttp.open('POST', '/tailors', true)
+            xhttp.send()
+        }
+
+        function loadProductsList() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    console.log("products response", this.responseText);
+                    
+                    if(this.responseText != '-1') {
+                        
+                        //setting values in drop down
+                        products = JSON.parse(this.responseText)
+
+                        fillProducts(products)
+                    }                   
+                }
+            }
+
+            xhttp.open('POST', '/products', true)
+            xhttp.send()
+        }
+
+
+        function sendReq(method, route, details, callback) {
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if(this.readyState == 4 && this.status == 200) {
+                    callback(this.responseText)
+                }
+            }
+
+            xhttp.open(method, route, true)
+            if(method=="POST") {
+                xhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded")
+            }
+
+            var sendString = ""
+            
+            for(let detail in details) {
+                sendString += `${detail}=${details[`${detail}`]}&`
+            }
+            xhttp.send(sendString.slice(0, sendString.length-1))
+
+        }
+
+
+
+        function fillTailors(tailors, parent=null) {
+            
+            parent = parent==null?document.querySelector('#tailors'):parent;
+            console.log("parent:", parent);
+            for(let i=0; i<tailors.length; i++) {
+                var child = document.createElement('option')
+                child.value = tailors[i].id;
+                child.innerHTML = tailors[i].name 
+                + ` (Pending: ${tailors[i].pending}, Processing: ${tailors[i].processing})`
+                parent.appendChild(child)
+                console.log("Tailor:", tailors[i].id);
+                
+            }
+        }
+
+        function fillProducts(products, parent=null) {
+            
+            parent = parent==null?document.querySelector('#products'):parent;
+            for(let i=0; i<products.length; i++) {
+                var child = document.createElement('option')
+                child.value = products[i].id;
+                child.innerHTML = products[i].name;
+                parent.appendChild(child)
+                console.log("Product:", products[i].id, "=", products[i].name);
+                
+            }
+        }
+
+        function fillQuantity(parent=null) {
+            
+            parent = parent==null?document.querySelector('#quantity'):parent;
+            for(let i=0; i<5; i++) {
+                var child = document.createElement('option')
+                child.value = i+1;
+                child.innerHTML = i+1;
+                parent.appendChild(child)
+                // console.log("Product:", quantity[i].id, "=", quantity[i].name);
+                
+            }
+        }
+
+        loadTailorsList()
+        loadProductsList()
+    
+    </script>
+
+
+    <!-- plus minus button scripts -->
+    <script>
+
+            function addInput(e) {
+
+            var parent = document.querySelector(".form-style-1");
+
+            //products
+            var li_products = document.createElement('li')
+            var products_label = document.createElement('label')
+            products_label.innerHTML = "order"
+            var products_select = document.createElement('select')
+            products_select.name="products"
+            products_select.className += 'field-select'
+            products_select.required=1
+            li_products.appendChild(products_label)
+            li_products.appendChild(products_select)
+
+            //quantity
+            var li_quantity = document.createElement('li')
+            var quantity_label = document.createElement('label')
+            quantity_label.innerHTML = "Quantity"
+            var quantity_select = document.createElement('select')
+            quantity_select.name="quantity"
+            quantity_select.className += 'field-select'
+            quantity_select.required=1
+            li_quantity.appendChild(quantity_label)
+            li_quantity.appendChild(quantity_select)
+            fillQuantity(quantity_select)
+
+            //tailors
+            var li_tailors = document.createElement('li')
+            var tailors_label = document.createElement('label')
+            tailors_label.innerHTML = "Tailor"
+            var tailors_select = document.createElement('select')
+            tailors_select.name="tailors"
+            quantity_select.className += 'field-select'
+            tailors_select.required=1
+            li_tailors.appendChild(tailors_label)
+            li_tailors.appendChild(tailors_select)
+
+            //buttons 
+            var plusButton = document.createElement('button')
+            plusButton.onclick = addInput
+            plusButton.innerHTML = "+"
+            plusButton.type="button"
+            plusButton.id="addButton"
+            //   plusButton.onclick="addInput()"
+            var deleteButton = document.createElement('button')
+            deleteButton.onclick = deleteInput
+            deleteButton.innerHTML = "-"
+            deleteButton.type="button"
+            deleteButton.id="deleteButton"
+            //   deleteButton.onclick="deleteInput()"
+
+            var newDiv = document.createElement('div')
+            newDiv.className += 'options'
+            newDiv.appendChild(li_products)
+            newDiv.appendChild(li_quantity)
+            newDiv.appendChild(li_tailors)
+            newDiv.appendChild(plusButton)
+            newDiv.appendChild(deleteButton)
+
+            parent.insertBefore(newDiv, document.querySelector('#submitButton'))
+
+            //assigning tailors
+            if(tailors == -1) {
+                console.log("tailors not present");
+                loadTailorsList()
+            } else {
+                fillTailors(tailors, tailors_select)
+            }
+            
+            //assigning products
+            if(products == -1) {
+                loadProductsList()
+            } else {
+                fillProducts(products, products_select)
+            }
+            }
+
+            function deleteInput(e) {
+
+            document.querySelector('.form-style-1').removeChild(e.target.parentNode)
+            
+            checkLast()
+            }
+
+            function checkLast() {
+
+            console.log(document.querySelectorAll('.form-style-1 .options').length);
+            if(document.querySelectorAll('.form-style-1 .options').length == 1) {
+                document.querySelector('.form-style-1 .options').removeChild(document.querySelector('.form-style-1 .options #deleteButton'))
+            }
+
+            }
+
+    </script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

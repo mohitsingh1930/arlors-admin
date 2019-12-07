@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+    <title>admin</title>
+</head>
+
+<body>
+    <section id="admin">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="NEWENTRIES-tab" data-toggle="tab" href="#NEWENTRIES" role="tab" aria-controls="home" aria-selected="true">NEW ENTRIES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="PENDINGORDERS-tab" data-toggle="tab" href="#PENDINGORDERS" role="tab" aria-controls="profile" aria-selected="false">PENDING ORDERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="COMPLETEDORDERS-tab" data-toggle="tab" href="#COMPLETEDORDERS" role="tab" aria-controls="contact" aria-selected="false">COMPLETED ORDERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="DELIEVEREDORDERS-tab" data-toggle="tab" href="#DELIEVEREDORDERS" role="tab" aria-controls="contact" aria-selected="false">DELIEVERED ORDERS</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+
+
+            <div class="tab-pane fade show active" id="NEWENTRIES" role="tabpanel" aria-labelledby="NEWENTRIES-tab">
+                <form action="" class="user-detail">
+                    <ul class="form-style-1">
+                        <li><label>customer Name <span class="required"> * </span></label><input type="text" name="field1" class="field-divided" placeholder="" required /></li>
+                        <li>
+                            <label>customer contact <span class="required">*</span></label>
+                            <input type="tel" name="field3" class="field-long" required />
+                        </li>
+                        <li>
+                            <label>customer address<span class="required">*</span></label>
+                            <textarea name="field5" id="field5" class="field-long field-textarea" required></textarea>
+                        </li>
+                        <li>
+                            <label>order type</label>
+                            <select name="field4" class="field-select" required>
+                                <option value="suit">suit</option>
+                                <option value="suit">suit</option>
+                                <option value="suit">suit</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>order date</label>
+                            <input type="date" required>
+                        </li>
+                        <li>
+                            <label>order time</label>
+                            <input type="time" required>
+                        </li>
+                        <li>
+                            <label>tailor assigned</label>
+                            <select name="field4" class="field-select" required>
+                                <option value="suit">a</option>
+                                <option value="suit">b</option>
+                                <option value="suit">c</option>
+                            </select>
+                        </li>
+                        <li>
+                            <button class="btn btn-primary">submit</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="PENDINGORDERS" role="tabpanel" aria-labelledby="PENDINGORDERS-tab">
+                <div class="card w-80" style="background-color: aliceblue">
+                    <div class="card-body">
+                        <!--  <h5 class="card-title">Customer Name</h5>-->
+
+
+                        <div class="customer details">
+                            <li><label>customer Name <span class="required"> * </span></label>
+                                <strong>&nbsp Rohit</strong>
+                            </li>
+                            <li>
+                                <label>customer contact <span class="required">*</span></label>
+                                <strong>9564649464</strong>
+                            </li>
+                            <li>
+                                <label>customer address<span class="required">*</span></label>
+                                <strong>&nbspB-3962/106 Sant Nagar Burari Delhi-110084</strong>
+                            </li>
+                        </div>
+                        <div class="tailor details">
+                            <li>
+                                <label>order type*</label>
+                                <strong>&nbsp Suit</strong>
+                            </li>
+                            <li>
+                                <label>order date*</label>
+                                <strong>&nbsp 19/19/1999</strong>
+                            </li>
+                            <li>
+                                <label>order time*</label>
+                                <strong>&nbsp 12:00</strong>
+                            </li>
+                            <li>
+                                <label>order ID*</label>
+                                <strong>&nbsp 15641648</strong>
+                            </li>
+                            <li>
+                                <label>tailor assigned*</label>
+                                <strong>&nbsp Seema</strong>
+                            </li>
+                            <li>
+                                <button class="btn btn-primary">Completed</button>
+                            </li>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+
+            <div class="tab-pane fade" id="COMPLETEDORDERS" role="tabpanel" aria-labelledby="COMPLETEDORDERS-tab">
+                <div class="card w-80" style="background-color: aliceblue">
+                    <div class="card-body">
+                        <h5 class="card-title">Customer Name</h5>
+
+                        <div class="customer details">
+                            <li><label>customer Name <span class="required"> * </span></label>
+                                <strong>&nbsp Rohit</strong>
+                            </li>
+                            <li>
+                                <label>customer contact <span class="required">*</span></label>
+                                <strong>9564649464</strong>
+                            </li>
+                            <li>
+                                <label>customer address<span class="required">*</span></label>
+                                <strong>&nbspB-3962/106 Sant Nagar Burari Delhi-110084</strong>
+                            </li>
+                        </div>
+                        <div class="tailor details">
+                            <li>
+                                <label>order type*</label>
+                                <strong>&nbsp Suit</strong>
+                            </li>
+                            <li>
+                                <label>order date*</label>
+                                <strong>&nbsp 19/19/1999</strong>
+                            </li>
+                            <li>
+                                <label>order time*</label>
+                                <strong>&nbsp 12:00</strong>
+                            </li>
+                            <li>
+                                <label>order ID*</label>
+                                <strong>&nbsp 15641648</strong>
+                            </li>
+                            <li>
+                                <label>tailor assigned*</label>
+                                <strong>&nbsp Seema</strong>
+                            </li>
+                            <li>
+                                <button class="btn btn-primary">delievered</button>
+                            </li>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <div class="tab-pane fade" id="DELIEVEREDORDERS" role="tabpanel" aria-labelledby="DELIEVEREDORDERS-tab">
+                <div class="card w-80" style="background-color: aliceblue">
+                    <div class="card-body">
+                        <h5 class="card-title">DELIEVERED ORDERS</h5>
+
+                        <div class="customer details">
+                            <li><label>customer Name <span class="required"> * </span></label>
+                                <strong>&nbsp Rohit</strong>
+                            </li>
+                            <li>
+                                <label>customer contact <span class="required">*</span></label>
+                                <strong>9564649464</strong>
+                            </li>
+                            <li>
+                                <label>customer address<span class="required">*</span></label>
+                                <strong>&nbspB-3962/106 Sant Nagar Burari Delhi-110084</strong>
+                            </li>
+                        </div>
+                        <div class="tailor details">
+                            <li>
+                                <label>order type*</label>
+                                <strong>&nbsp Suit</strong>
+                            </li>
+                            <li>
+                                <label>order date*</label>
+                                <strong>&nbsp 19/19/1999</strong>
+                            </li>
+                            <li>
+                                <label>order time*</label>
+                                <strong>&nbsp 12:00</strong>
+                            </li>
+                            <li>
+                                <label>order ID*</label>
+                                <strong>&nbsp 15641648</strong>
+                            </li>
+                            <li>
+                                <label>tailor assigned*</label>
+                                <strong>&nbsp Seema</strong>
+                            </li>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
